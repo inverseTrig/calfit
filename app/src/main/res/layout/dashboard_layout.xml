@@ -230,19 +230,19 @@
             android:id="@+id/dashboard_addAction_exercise"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_colorNormal="@color/white"
+            fab:fab_colorNormal="@color/dashboard_foodColor"
             fab:fab_title="Add Exercise"
-            fab:fab_colorPressed="@color/white_pressed"
-            fab:fab_icon="@drawable/fire_orange" />
+            fab:fab_colorPressed="@color/dashboard_foodColorDark"
+            fab:fab_icon="@drawable/fire_white" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/dashboard_addAction_food"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_colorNormal="@color/white"
+            fab:fab_colorNormal="@color/colorPrimary"
             fab:fab_title="Add Food"
-            fab:fab_colorPressed="@color/white_pressed"
-            fab:fab_icon="@drawable/food_blue" />
+            fab:fab_colorPressed="@color/colorPrimaryDark"
+            fab:fab_icon="@drawable/food_white" />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
