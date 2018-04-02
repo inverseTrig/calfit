@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="progressBarColor">#FFCDD2</color>
-    <color name="backgroundProgressBarColor">#F44336</color>
+    <color name="colorPrimary">#529e9d</color>
+    <color name="colorPrimaryDark">#284a49</color>
+    <color name="colorAccent">#5da1ea</color>
+    <color name="progressBarColor">#ffffff</color>
+    <color name="backgroundProgressBarColor">#7bbbba</color>
+    <color name="backgroundProgressBarColorAlt">#e5b4a9</color>
+    <color name="dashboard_backgroundColor">#7fd2d1</color>
+    <color name="dashboard_foodColor">#ea6143</color>
+    <color name="dashboard_foodColorDark">#bb472d</color>
+    <color name="dashboard_lightColor">#7bbbba</color>
+    <color name="white">#ffffff</color>
+    <color name="white_pressed">#D9D9D9</color>
+    <color name="half_black">#353535</color>
+    <color name="black_semi_transparent">#898989</color>
 </resources>
