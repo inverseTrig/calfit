@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CalFit</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Yusuf Azam</string>
+    <string name="nav_header_subtitle">azamy@augsburg.edu</string>
+    <string name="nav_header_desc">Navigation Header</string>
+    <string name="action_settings">Settings</string>
+</resources>
