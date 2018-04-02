@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,8 +30,8 @@ public class DashboardFragment extends Fragment {
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy");
     ArrayList<FoodItem> foodList;
     View myView;
-    double totalFat, totalSugar, totalCalorie, percentage;
-    double maxCalorie = 2000.0;
+    double totalFat, totalSugar, totalCalorie;
+    double maxCalorie = 1200.0;
     Calendar dt;
 
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -48,7 +49,6 @@ public class DashboardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.dashboard_layout, container, false);
         foodList = new ArrayList<>();
-        totalFat = 0; totalSugar = 0; totalCalorie = 0; percentage = 0;
 
         dt = Calendar.getInstance();
         updateTime(dt);
@@ -92,6 +92,38 @@ public class DashboardFragment extends Fragment {
         foodList.add(banana);
         foodList.add(lasagna);
 
+
+        updateInfo();
+
+        ListView dashboardListView = (ListView) myView.findViewById(R.id.dashboard_listview);
+        TextView textView = new TextView(getActivity());
+        textView.setText("   Current Consumption");
+        dashboardListView.addHeaderView(textView);
+
+        FloatingActionButton dashboard_fab = (FloatingActionButton) myView.findViewById(R.id.dashboard_floating_button);
+        dashboard_fab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                FoodItem beer = new FoodItem("Beer", R.drawable.beer);
+                beer.setCalorie(154.0);
+                beer.setFat(0.0);
+                beer.setSugar(0.0);
+
+                foodList.add(beer);
+                updateInfo();
+            }
+        });
+
+        return myView;
+    }
+
+    private void updateTime(Calendar dt) {
+        Date date = dt.getTime();
+        Button currentDate = (Button) myView.findViewById(R.id.currentDateButton);
+        currentDate.setText(dateFormat.format(date));
+    }
+
+    private void updateInfo() {
+        totalFat = 0; totalSugar = 0; totalCalorie = 0;
         List<HashMap<String, String>> aList = new ArrayList<HashMap<String, String>>();
 
         for (FoodItem fI : foodList) {
@@ -110,27 +142,14 @@ public class DashboardFragment extends Fragment {
 
         SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity(), aList, R.layout.dashboard_listview_activity, from, to);
         ListView dashboardListView = (ListView) myView.findViewById(R.id.dashboard_listview);
-        TextView textView = new TextView(getActivity());
-        textView.setText(" Current Consumption");
-        dashboardListView.addHeaderView(textView);
         dashboardListView.setAdapter(simpleAdapter);
 
-        CircularProgressBar circularProgressBar = (CircularProgressBar) myView.findViewById(R.id.circularProgressbar);
-        circularProgressBar.setColor(ContextCompat.getColor(this.getActivity(), R.color.progressBarColor));
-        circularProgressBar.setBackgroundColor(ContextCompat.getColor(this.getActivity(), R.color.backgroundProgressBarColor));
-        circularProgressBar.setProgressBarWidth(getResources().getDimension(R.dimen.progressBarWidth));
-        circularProgressBar.setBackgroundProgressBarWidth(getResources().getDimension(R.dimen.backgroundProgressBarWidth));
-        int animationDuration = 1500; // 1500ms = 1.5s
-        percentage = Math.floor(totalCalorie*100/maxCalorie);
-        circularProgressBar.setProgressWithAnimation((float) percentage, animationDuration); // Default duration = 1500ms
+        TextView cal = (TextView) myView.findViewById(R.id.dashboard_calorie);
+        cal.setText(Double.toString(maxCalorie-totalCalorie));
 
-        return myView;
-    }
+        TextView summ = (TextView) myView.findViewById(R.id.dashboard_summary);
 
-    private void updateTime(Calendar dt) {
-        Date date = dt.getTime();
-        Button currentDate = (Button) myView.findViewById(R.id.currentDateButton);
-        currentDate.setText(dateFormat.format(date));
+        summ.setText("Daily goal of " + maxCalorie + " - " + totalCalorie + " (food)");
     }
 
 }
