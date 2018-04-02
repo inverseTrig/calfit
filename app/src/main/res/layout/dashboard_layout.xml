@@ -41,45 +41,164 @@
     <LinearLayout
         android:id="@+id/currentDashboardStatus"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="210dp"
         android:layout_below="@id/dashboard_topbar"
-        android:layout_margin="6dp"
+        android:background="@color/colorPrimary"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="140dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/dashboard_calorie"
+            <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                android:id="@+id/dashboard_circularProgressBar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_weight=".37"
-                android:gravity="end"
-                android:textColor="@android:color/holo_green_dark"
-                android:textSize="40sp"
-                android:textStyle="bold" />
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0.3" />
 
-            <TextView
-                android:id="@+id/dashboard_summary"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_margin="8dp"
-                android:layout_weight=".63"
-                android:gravity="bottom"
-                android:textSize="12sp" />
+                android:layout_weight="0.45"
+                android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.27"
+                    android:gravity="bottom"
+                    android:text="Calories"
+                    android:textColor="@android:color/white"
+                    android:textSize="20dp"
+                    app:fontFamily="serif" />
+
+                <TextView
+                    android:id="@+id/dashboard_calorie"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".50"
+                    android:gravity="bottom"
+                    android:textColor="@android:color/white"
+                    android:textSize="60dp"
+                    app:fontFamily="serif" />
+
+                <TextView
+                    android:id="@+id/dashboard_calorie_leftover"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.23"
+                    android:gravity="top"
+                    android:textColor="@android:color/white"
+                    app:fontFamily="serif" />
+
+            </LinearLayout>
+
+            <ToggleButton
+                android:id="@+id/dashboard_toggleButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.26"
+                android:background="@color/colorPrimary"
+                android:checked="true" />
         </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="11dp"
-            android:text="CALORIES REMAINING"
-            android:textSize="12sp" />
+            android:text="Water"
+            android:textColor="@android:color/white"
+            android:textSize="20dp"
+            app:fontFamily="serif" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/dashboard_water_toggle_1"
+                android:src="@drawable/water_toggle_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.14" />
+
+            <ImageView
+                android:id="@+id/dashboard_water_toggle_2"
+                android:src="@drawable/water_toggle_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.14" />
+
+            <ImageView
+                android:id="@+id/dashboard_water_toggle_3"
+                android:src="@drawable/water_toggle_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.14" />
+
+            <ImageView
+                android:id="@+id/dashboard_water_toggle_4"
+                android:src="@drawable/water_toggle_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.14" />
+
+            <ImageView
+                android:id="@+id/dashboard_water_toggle_5"
+                android:src="@drawable/water_toggle_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.14" />
+
+            <ImageView
+                android:id="@+id/dashboard_water_toggle_6"
+                android:src="@drawable/water_toggle_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.14" />
+
+            <ImageView
+                android:id="@+id/dashboard_water_toggle_7"
+                android:src="@drawable/water_toggle_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.14" />
+
+        </LinearLayout>
+
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/dashboard_calorie_left"
+        android:layout_width="110dp"
+        android:layout_height="70dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/dashboard_topbar"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:text="left"
+        android:gravity="bottom" />
+
+    <TextView
+        android:id="@+id/dashboard_calorie_used"
+        android:layout_width="110dp"
+        android:layout_height="70dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/dashboard_calorie_left"
+        android:background="@color/colorPrimary"
+        android:gravity="top"
+        android:text="used"
+        android:textColor="@android:color/white"
+        android:textSize="16dp"
+        android:textStyle="bold" />
 
     <ListView
         android:id="@+id/dashboard_listview"

@@ -1,19 +1,20 @@
 package edu.augsburg.calfit;
 
-public class FoodItem {
+public class ActivityItem {
     String name;
+    String description;
     int image;
     double calorie;
-    double sugar;
-    double fat;
 
-    public FoodItem(String name, int image) {
+    public ActivityItem(String name, int image, String description, double calorie) {
         this.name = name;
         this.image = image;
+        this.description = description;
+        this.calorie = calorie;
     }
 
-    public String generateDescription() {
-        return calorie + " kcal, " + sugar + "g sugar, " + fat + "g fat";
+    public String toString() {
+        return calorie + " cal";
     }
 
     public String getName() {
@@ -40,19 +41,11 @@ public class FoodItem {
         this.calorie = calorie;
     }
 
-    public double getSugar() {
-        return sugar;
+    public String getDescription() {
+        return description;
     }
 
-    public void setSugar(double sugar) {
-        this.sugar = sugar;
-    }
-
-    public double getFat() {
-        return fat;
-    }
-
-    public void setFat(double fat) {
-        this.fat = fat;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

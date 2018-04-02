@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#529e9d</color>
-    <color name="colorPrimaryDark">#284a49 </color>
+    <color name="colorPrimaryDark">#284a49</color>
     <color name="colorAccent">#5da1ea</color>
-    <color name="progressBarColor">#576ae4</color>
-    <color name="backgroundProgressBarColor">#c5cbed</color>
+    <color name="progressBarColor">#ffffff</color>
+    <color name="backgroundProgressBarColor">#7bbbba</color>
     <color name="dashboard_backgroundColor">#7fd2d1</color>
     <color name="dashboard_foodColor">#ea6143</color>
-    <color name="dashboard_lightColor">#c1ebeb</color>
+    <color name="dashboard_lightColor">#7bbbba</color>
 </resources>
