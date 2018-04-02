@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,9 +16,9 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class GroceryFragment extends Fragment implements View.OnClickListener{
+public class GroceryFragment extends Fragment{
     View myView;
-    private ArrayList<String> items;
+    private ArrayList<String> itemsList;
     private ArrayAdapter<String> itemsAdapter;
     private ListView lvItems;
     private EditText input;
@@ -28,44 +29,60 @@ public class GroceryFragment extends Fragment implements View.OnClickListener{
         myView = inflater.inflate(R.layout.grocery_layout, container, false);
 
         super.onCreate(savedInstanceState);
-        // ADD HERE
+        // Varaiables and stuff
         lvItems = (ListView) myView.findViewById(R.id.lvItems);
-        items = new ArrayList<String>();
-        itemsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, items);
+        itemsList = new ArrayList<String>();
+        itemsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, itemsList);
         lvItems.setAdapter(itemsAdapter);
-        items.add("First Item");
-        items.add("Second Item");
+        //Deafult To This, an example of canned data
+        itemsList.add("Rice");
+        itemsList.add("Ground Chicken");
+
+        input = (EditText)myView.findViewById(R.id.etNewItem);
+        Button add = (Button)myView.findViewById(R.id.btnAddItem);
+
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemsList.add(input.getText().toString());
+                itemsAdapter.notifyDataSetChanged();
+            }
+        });
+        /*
+        lvItems.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                SparseBooleanArray pos = lvItems.getCheckedItemPositions(); //posistion of cursor
+
+                int count  =  lvItems.getCount();
+
+                for(int item = count-1; item>=0; item--){
+
+                    if(pos.get(item)){
+                        itemsAdapter.remove(itemsList.get(item));
+                    }
+                }
+
+                pos.clear();
+                itemsAdapter.notifyDataSetChanged();
+                return false;
+            }
+        });
+        */
+        lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                itemsList.remove(position);
+                itemsAdapter.notifyDataSetChanged();
+            }
+        });
 
 
         return myView;
     }
 
-    @Override
-    public void onClick(View myView){
-
-        input = (EditText)myView.findViewById(R.id.etNewItem);
-        Button add = (Button)myView.findViewById(R.id.btnAddItem);
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        items.add(input.getText().toString());
-        itemsAdapter.notifyDataSetChanged();
-
-
-    }
-     /*
-    @Override
-    public void onClick(View myView) {
-        EditText etNewItem = (EditText) myView.findViewById(R.id.etNewItem);
-        String itemText = etNewItem.getText().toString();
-        itemsAdapter.add(itemText);
-        etNewItem.setText("");
-        items.add(itemText);
-    }
-    */
 
 
 }
