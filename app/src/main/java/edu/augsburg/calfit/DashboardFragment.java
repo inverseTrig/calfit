@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +12,13 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import java.text.SimpleDateFormat;
@@ -85,8 +86,8 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-        ActivityItem banana = new ActivityItem("Snack", R.drawable.food, "Ate banana", 105.0);
-        ActivityItem lasagna = new ActivityItem("Lunch", R.drawable.food, "Ate lasagna at Pizza Luce", 408.0);
+        ActivityItem banana = new ActivityItem("Snack", R.drawable.food_blue, "Ate banana", 105.0);
+        ActivityItem lasagna = new ActivityItem("Lunch", R.drawable.food_blue, "Ate lasagna at Pizza Luce", 408.0);
 
         activityList.add(banana);
         activityList.add(lasagna);
@@ -109,7 +110,7 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-        waterToggle1 = (ImageView) myView.findViewById(R.id.dashboard_water_toggle_1);
+        waterToggle1 = myView.findViewById(R.id.dashboard_water_toggle_1);
         waterToggle1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,7 +118,7 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-        waterToggle2 = (ImageView) myView.findViewById(R.id.dashboard_water_toggle_2);
+        waterToggle2 = myView.findViewById(R.id.dashboard_water_toggle_2);
         waterToggle2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,7 +126,7 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-        waterToggle3 = (ImageView) myView.findViewById(R.id.dashboard_water_toggle_3);
+        waterToggle3 = myView.findViewById(R.id.dashboard_water_toggle_3);
         waterToggle3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,7 +134,7 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-        waterToggle4 = (ImageView) myView.findViewById(R.id.dashboard_water_toggle_4);
+        waterToggle4 = myView.findViewById(R.id.dashboard_water_toggle_4);
         waterToggle4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,7 +142,7 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-        waterToggle5 = (ImageView) myView.findViewById(R.id.dashboard_water_toggle_5);
+        waterToggle5 = myView.findViewById(R.id.dashboard_water_toggle_5);
         waterToggle5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,7 +150,7 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-        waterToggle6 = (ImageView) myView.findViewById(R.id.dashboard_water_toggle_6);
+        waterToggle6 = myView.findViewById(R.id.dashboard_water_toggle_6);
         waterToggle6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,7 +158,7 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-        waterToggle7 = (ImageView) myView.findViewById(R.id.dashboard_water_toggle_7);
+        waterToggle7 = myView.findViewById(R.id.dashboard_water_toggle_7);
         waterToggle7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,22 +166,34 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-        FloatingActionButton dashboard_fab = (FloatingActionButton) myView.findViewById(R.id.dashboard_floating_button);
-        dashboard_fab.setOnClickListener(new View.OnClickListener() {
+        final FloatingActionButton addExercise = myView.findViewById(R.id.dashboard_addAction_exercise);
+        addExercise.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                ActivityItem running = new ActivityItem("Exercise", R.drawable.fire, "Went running", -200.0);
-
+                ActivityItem running = new ActivityItem("Exercise", R.drawable.fire_orange, "Went running for 30 minutes", -146.0);
                 activityList.add(running);
                 updateInfo();
             }
         });
+
+        final FloatingActionButton addFood = myView.findViewById(R.id.dashboard_addAction_food);
+        addFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityItem beer = new ActivityItem("Beer", R.drawable.food_blue, "Had a can of beer", 154.0);
+                activityList.add(beer);
+                updateInfo();
+            }
+        });
+
+
 
         return myView;
     }
 
     private void updateTime(Calendar dt) {
         Date date = dt.getTime();
-        Button currentDate = (Button) myView.findViewById(R.id.currentDateButton);
+        Button currentDate = myView.findViewById(R.id.currentDateButton);
         currentDate.setText(dateFormat.format(date));
     }
 
@@ -211,7 +224,6 @@ public class DashboardFragment extends Fragment {
 
         CircularProgressBar circularProgressBar = (CircularProgressBar) myView.findViewById(R.id.dashboard_circularProgressBar);
         circularProgressBar.setColor(getResources().getColor(R.color.progressBarColor));
-        circularProgressBar.setBackgroundColor(getResources().getColor(R.color.backgroundProgressBarColor));
         circularProgressBar.setProgressBarWidth(getResources().getDimension(R.dimen.progressBarWidth));
         circularProgressBar.setBackgroundProgressBarWidth(getResources().getDimension(R.dimen.backgroundProgressBarWidth));
         int animationDuration = 1500; // 2500ms = 2,5s
@@ -219,37 +231,55 @@ public class DashboardFragment extends Fragment {
         if (checked == true) {
             percentage = totalCalorie * 100 / maxCalorie;
 
+            circularProgressBar.setBackgroundColor(getResources().getColor(R.color.backgroundProgressBarColor));
             circularProgressBar.setProgressWithAnimation(percentage.floatValue(), animationDuration); // Default duration = 1500ms
 
-            TextView cal = (TextView) myView.findViewById(R.id.dashboard_calorie);
+            LinearLayout linearLayout = myView.findViewById(R.id.currentDashboardStatus);
+            linearLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+
+            TextView cal = myView.findViewById(R.id.dashboard_calorie);
             Double difference = maxCalorie - totalCalorie;
             cal.setText(Integer.toString(difference.intValue()));
 
-            TextView calLeftOver = (TextView) myView.findViewById(R.id.dashboard_calorie_leftover);
+            TextView calLeftOver = myView.findViewById(R.id.dashboard_calorie_leftover);
             calLeftOver.setText("of " + Integer.toString(maxCalorie.intValue()));
 
-            TextView calLeft = (TextView) myView.findViewById(R.id.dashboard_calorie_left);
-            calLeft.setTextColor(getResources().getColor(R.color.progressBarColor));
+            TextView calLeft = myView.findViewById(R.id.dashboard_calorie_left);
+            calLeft.setAlpha(1f);
+            calLeft.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
 
-            TextView calUsed = (TextView) myView.findViewById(R.id.dashboard_calorie_used);
-            calUsed.setTextColor(getResources().getColor(R.color.dashboard_lightColor));
+            TextView calUsed = myView.findViewById(R.id.dashboard_calorie_used);
+            calUsed.setAlpha(0.3f);
+            calUsed.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+
+            ToggleButton toggleButton = myView.findViewById(R.id.dashboard_toggleButton);
+            toggleButton.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         } else {
             percentage = burntCalorie * 100 / goalCalorie;
 
+            circularProgressBar.setBackgroundColor(getResources().getColor(R.color.backgroundProgressBarColorAlt));
             circularProgressBar.setProgressWithAnimation(percentage.floatValue(), animationDuration); // Default duration = 1500ms
 
-            TextView cal = (TextView) myView.findViewById(R.id.dashboard_calorie);
+            LinearLayout linearLayout = myView.findViewById(R.id.currentDashboardStatus);
+            linearLayout.setBackgroundColor(getResources().getColor(R.color.dashboard_foodColor));
+
+            TextView cal = myView.findViewById(R.id.dashboard_calorie);
             Double difference = goalCalorie - burntCalorie;
             cal.setText(Integer.toString(difference.intValue()));
 
-            TextView calLeftOver = (TextView) myView.findViewById(R.id.dashboard_calorie_leftover);
+            TextView calLeftOver = myView.findViewById(R.id.dashboard_calorie_leftover);
             calLeftOver.setText("of " + Integer.toString(goalCalorie.intValue()));
 
-            TextView calLeft = (TextView) myView.findViewById(R.id.dashboard_calorie_left);
-            calLeft.setTextColor(getResources().getColor(R.color.dashboard_lightColor));
+            TextView calLeft = myView.findViewById(R.id.dashboard_calorie_left);
+            calLeft.setAlpha(0.3f);
+            calLeft.setBackgroundColor(getResources().getColor(R.color.dashboard_foodColor));
 
-            TextView calUsed = (TextView) myView.findViewById(R.id.dashboard_calorie_used);
-            calUsed.setTextColor(getResources().getColor(R.color.progressBarColor));
+            TextView calUsed = myView.findViewById(R.id.dashboard_calorie_used);
+            calUsed.setAlpha(1f);
+            calUsed.setBackgroundColor(getResources().getColor(R.color.dashboard_foodColor));
+
+            ToggleButton toggleButton = myView.findViewById(R.id.dashboard_toggleButton);
+            toggleButton.setBackgroundColor(getResources().getColor(R.color.dashboard_foodColor));
         }
 
 

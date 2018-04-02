@@ -9,10 +9,6 @@
             android:icon="@drawable/ic_dashboard_black_24dp"
             android:title="Dashboard" />
         <item
-            android:id="@+id/nav_exercise"
-            android:icon="@drawable/ic_directions_bike_black_24dp"
-            android:title="Exercise" />
-        <item
             android:id="@+id/nav_grocery"
             android:icon="@drawable/ic_local_grocery_store_black_24dp"
             android:title="Grocery" />
