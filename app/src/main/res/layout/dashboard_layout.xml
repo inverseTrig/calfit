@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -8,25 +8,63 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="?android:attr/colorBackground"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/decreaseDate"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.08"
+            android:background="?android:attr/colorBackground"
+            android:src="@drawable/ic_chevron_left_black_24dp" />
+
+        <Button
+            android:id="@+id/currentDateButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".84"
+            android:background="#fafafa"
+            android:gravity="center" />
+
+        <ImageButton
+            android:id="@+id/increaseDate"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.08"
+            android:background="?android:attr/colorBackground"
+            android:src="@drawable/ic_chevron_right_black_24dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/currentDashboardStatus"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="@dimen/fab_margin">
+        android:layout_margin="12px">
 
         <com.mikhaellopez.circularprogressbar.CircularProgressBar
             android:id="@+id/circularProgressbar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".50" />
+            android:layout_weight=".10" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:text="Hello World!"
             app:layout_constraintBottom_toBottomOf="@id/circularProgressbar"
-            android:layout_weight=".50" />
-
+            android:layout_weight=".90" />
 
     </LinearLayout>
 
-</RelativeLayout>
+    <ListView
+        android:id="@+id/dashboard_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="#FFCC00"
+        android:dividerHeight="1px" />
+
+</LinearLayout>
 
