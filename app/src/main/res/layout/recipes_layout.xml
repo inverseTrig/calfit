@@ -1,13 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <SearchView
-        android:id="@+id/svSearchView"
+    <LinearLayout
+        android:id="@+id/recipe_topbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        app:queryHint="Search Recipes."
+        android:layout_height="45dp"
+        android:background="?android:attr/colorBackground"
+        android:orientation="horizontal">
 
-    </SearchView>
-</LinearLayout>
+        <ImageButton
+            android:id="@+id/decreaseDate"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.08"
+            android:background="?android:attr/colorBackground"
+            android:src="@drawable/ic_chevron_left_black_24dp" />
+
+        <Button
+            android:id="@+id/todayDateButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".84"
+            android:background="#fafafa"
+            android:gravity="center" />
+
+        <ImageButton
+            android:id="@+id/increaseDate"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.08"
+            android:background="?android:attr/colorBackground"
+            android:src="@drawable/ic_chevron_right_black_24dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/currentRecipeStatus"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:layout_below="@id/recipe_topbar"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:orientation="horizontal">
+
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.45"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.27"
+                    android:gravity="bottom"
+                    android:text="Recipes"
+                    android:textColor="@android:color/white"
+                    android:textSize="20dp"
+                    app:fontFamily="serif" />
+
+                <EditText
+                    android:id="@+id/txtsearch1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Search Calfit Recipes"
+
+                    />
+                <ListView
+                    android:id = "@+id/listview"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                </ListView>
+
+                <EditText
+                    android:id="@+id/txtsearch2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Search URL"
+
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <ListView
+        android:id="@+id/recipe_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/currentRecipeStatus"
+        android:divider="#FFCC00"
+        android:dividerHeight="1px" >
+
+    </ListView>
+
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/dashboard_multiple_actions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        fab:fab_addButtonColorNormal="@color/white"
+        fab:fab_addButtonColorPressed="@color/white_pressed"
+        fab:fab_addButtonPlusIconColor="@color/half_black"
+        fab:fab_labelStyle="@style/menu_labels_style"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addChicken"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/dashboard_foodColor"
+            fab:fab_colorPressed="@color/dashboard_foodColorDark"
+            fab:fab_icon="@drawable/fire_white"
+            fab:fab_title="Add Grilled Chicken" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addRecipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/colorPrimary"
+            fab:fab_colorPressed="@color/colorPrimaryDark"
+            fab:fab_icon="@drawable/food_white"
+            fab:fab_title="Add New Recipe" />
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+</RelativeLayout>

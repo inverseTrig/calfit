@@ -8,7 +8,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/dashboard_topbar"
+        android:id="@+id/recipe_topbar"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="?android:attr/colorBackground"
@@ -43,7 +43,7 @@
         android:id="@+id/currentDashboardStatus"
         android:layout_width="match_parent"
         android:layout_height="210dp"
-        android:layout_below="@id/dashboard_topbar"
+        android:layout_below="@id/recipe_topbar"
         android:background="@color/colorPrimary"
         android:orientation="vertical">
 
@@ -180,7 +180,7 @@
         android:layout_width="110dp"
         android:layout_height="70dp"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/dashboard_topbar"
+        android:layout_below="@id/recipe_topbar"
         android:background="@color/colorPrimary"
         android:textColor="@android:color/white"
         android:textSize="16dp"
